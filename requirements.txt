@@ -1,0 +1,9 @@
+langchain_community
+langchain_text_splitters
+langchain-core
+unstructured[md]
+nltk
+langchain_community
+langchain-text-splitters
+faiss-cpu
+langchain_ollama
