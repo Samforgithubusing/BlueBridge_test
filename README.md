@@ -6,8 +6,11 @@ It contains 3 mains files:
  - evaluation.py: to evaluate the results of the retrievel process using precision and recall  
  - llm_chat.py: for answering questions and output a .json file answers.json 
 
-## ⚙️ Dependencies: creta your python 
+## ⚙️ Dependencies: create your conda environment (or python virtual environment) and install requirements
+If you have conda installed in your machine run the bash command:
 ``` bash 
 conda create --name bluebridge python==3.11 
+conda activate bluebridge
+pip install requirements.txt
 ```
 
