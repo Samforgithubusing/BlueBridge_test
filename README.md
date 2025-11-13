@@ -30,20 +30,17 @@ ollama pull llama3.2:3b
 ## 💫 Run 
 For the FAISS  vector store creation run:
 
-``` 
-bash
+``` bash
 python preprocess.py --path_to_docs /path/to/your/.md --save_folder /path/to/save/FAISS  
 ```
 
 For llm answering:
-``` 
-bash
+``` bash 
 python llm_chat.py --path_to_docs /path/to/your/.md --save_folder /path/to/save/FAISS --q_file /path/questions --a_file /path/to/save/answers 
 ```
 
 For the evaluation of the retriever:
-``` 
-bash
+``` bash 
 python evaluation.py --path_to_docs /path/to/your/.md --save_folder /path/to/save/FAISS --json_file /path/to/evaluation.json
 ```
 
