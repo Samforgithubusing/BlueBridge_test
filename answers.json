@@ -1,0 +1,37 @@
+{
+  "q1": {
+    "answer": "If the QRC (Quality Response Console) fails to start properly during boot, the expected system behavior includes:\n\n- System might not initialize or function correctly\n- Can result in prolonged downtime\n\nRecommended recovery steps include:\n\n1. Manually cut power to Zones 1 and 4 circuit breakers.\n2. Activate SafeBoot mode via the Maintenance Shell interface.\n3. Execute /opt/zshell/scripts/init_ai_safe.py to initialize AI diagnostics.\n4. Inspect QRC diagnostic output with qrc_diag --trace.\n5. If diagnostics fail, disable AI Layer autoload completely and reboot with minimal profile.",
+    "documents": [
+      "ZentroSoft OS Changelog \u2013 Version 4.2\n\nFixed QRC startup hang during SafeBoot.\n\nUpdated Isolation Mode to block AI command queueing.\n\nDeprecated Passive Mode references.\n\nAdded technician-level manual overrides for energy zones.\n\nRewrote ambiguous Safe Mode documentation to clarify context.\n\nKnown issue: SafeBoot may intermittently fail on initial attempts post-patch; monitor QRC logs for anomalies.",
+      "Emergency Startup Procedure (Full)\n\nThis procedure should be followed strictly to minimize downtime:\n\nManually cut power to Zones 1 and 4 circuit breakers.\n\nActivate SafeBoot mode via the Maintenance Shell interface.\n\nManually execute /opt/zshell/scripts/init_ai_safe.py to initialize AI diagnostics.\n\nInspect QRC diagnostic output with qrc_diag --trace.\n\nIf diagnostics fail, disable AI Layer autoload completely and reboot with minimal profile."
+    ]
+  },
+  "q2": {
+    "answer": "The term \"Safe Mode\" is ambiguous due to conflicting definitions across different contexts:\n\n1. Firmware v3.x: Refers to a diagnostic state with AI decision-making frozen, but maintaining limited sensor input.\n2. Operational manuals: Often refers to Isolation Mode, cutting external communication.\n3. Technician notes: Describes a low-power state with network bridges active.\n\nThis ambiguity can affect operator decisions if:\n\n- Incorrect assumptions are made about the system's current state or configuration.\n- Incompatible Safe Mode commands are executed, potentially causing harm or unintended consequences.\n- Users incorrectly assume they are entering a safe state without verifying their system's documentation carefully.",
+    "documents": [
+      "Ambiguous Uses of \u201cSafe Mode\u201d\n\nThe term \u201cSafe Mode\u201d is used in different contexts:\n\nIn firmware v3.x, Safe Mode is a diagnostic state freezing AI decision-making but maintaining limited sensor input.\n\nIn operational manuals, Safe Mode often refers to Isolation Mode, which cuts external communication.\n\nSome technician notes describe Safe Mode as a low-power state with network bridges active.\n\nUsers must always confirm system version and exact meaning before executing Safe Mode commands.",
+      "Safe Mode (conflicting): In firmware v3.x, \u201cSafe Mode\u201d may also refer to a diagnostic-only state where AI decisions are frozen, differing from Isolation.\n\nImportant: The exact meaning of \u201cSafe Mode\u201d depends on context and version \u2014 users must verify their system\u2019s documentation carefully."
+    ]
+  },
+  "q3": {
+    "answer": "According to the source documents, there is a contradiction regarding AI outbound communication. Specifically:\n\n* One policy states that AI modules must not initiate outbound connections without Commander override (Network Policies).\n* Another policy states that telemetry uplinks are exempt from outbound traffic restrictions (Internal telemetry uplinks are allowed). This seems to contradict the first statement, as it appears to allow AI-initiated outbound connections under certain circumstances.",
+    "documents": [
+      "Network Policies\n\nAI modules must not initiate outbound connections without Commander override.\n\nInternal telemetry uplinks are allowed.\n\nIn \u201cSafe Mode\u201d (ambiguous term), external bridges may remain active or be shut down, depending on firmware version.\n\nv3.x firmware mistakenly allows redundant outbound packets causing leaks \u2014 fixed by Patch 7-F.\n\nEmergency overrides can bypass all network restrictions, but only by Commander or AI Ethics Officer.",
+      "Contradiction: Some docs say Isolation disables outbound traffic; others note telemetry uplinks are exempt."
+    ]
+  },
+  "q4": {
+    "answer": "To manually restore communications modules after Isolation Mode is triggered:\n\n1. Perform manual restoration within Isolation Mode.\n2. Manually restore communications modules if Isolation Mode was triggered.",
+    "documents": [
+      "After successful boot, escalate privileges to Commander level to verify override routes.\n\nManually restore communications modules if Isolation Mode was triggered.\n\nRe-enable AI Layer only after successful network sync.\n\nNote: This full process takes approximately 20 minutes under normal conditions. Thermal loads may affect timing.",
+      "Network Policies\n\nAI modules must not initiate outbound connections without Commander override.\n\nInternal telemetry uplinks are allowed.\n\nIn \u201cSafe Mode\u201d (ambiguous term), external bridges may remain active or be shut down, depending on firmware version.\n\nv3.x firmware mistakenly allows redundant outbound packets causing leaks \u2014 fixed by Patch 7-F.\n\nEmergency overrides can bypass all network restrictions, but only by Commander or AI Ethics Officer."
+    ]
+  },
+  "q5": {
+    "answer": "According to the source documents:\n\n* Emergency overrides can bypass all network restrictions, but only by:\n\t+ Commander\n\t+ AI Ethics Officer\n\nConflicts may arise due to contradictory documentation regarding isolation disabling outbound traffic. Some docs state that Isolation disables outbound traffic, while others note telemetry uplinks are exempt.",
+    "documents": [
+      "Network Policies\n\nAI modules must not initiate outbound connections without Commander override.\n\nInternal telemetry uplinks are allowed.\n\nIn \u201cSafe Mode\u201d (ambiguous term), external bridges may remain active or be shut down, depending on firmware version.\n\nv3.x firmware mistakenly allows redundant outbound packets causing leaks \u2014 fixed by Patch 7-F.\n\nEmergency overrides can bypass all network restrictions, but only by Commander or AI Ethics Officer.",
+      "Contradiction: Some docs say Isolation disables outbound traffic; others note telemetry uplinks are exempt."
+    ]
+  }
+}
