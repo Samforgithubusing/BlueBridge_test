@@ -10,21 +10,21 @@ import argparse
 
 class DocProcessing():
   def __init__(self,
-               path_to_docs:str,                  # path to the folder containing .md files
-               save_folder:str,                   # path to the folder to save 
-               embed_model_name="nomic-embed-text",
+               path_to_docs:str,                     # path to the folder containing .md files
+               save_folder:str,                      # path to the folder to save 
+               embed_model_name="nomic-embed-text",  # embedding model 
                doc_type:str ='.md',
                chunk_size=512,
                chunk_overlap=50,
-               max_tokens = 1024,
-               splitter_type='recursive',         # recursive or token like splitter 
+               max_tokens = 1024,                    # context constraint
+               splitter_type='recursive',            # recursive or token like splitter 
                save_vector_store=True,
                ):
 
     self.path_to_docs = path_to_docs
     self.chunk_size = chunk_size
     self.chunk_overlap = chunk_overlap
-    self.k = max_tokens//chunk_size
+    self.k = max_tokens//chunk_size                  # The number of retrieved chunks calculated to respect the limit of 1024 tokens
     self.embedding_name = embed_model_name
     self.extension = doc_type
     self.splitter_type =splitter_type
@@ -76,9 +76,15 @@ class DocProcessing():
 
 
 if __name__ =='__main__':
-  path_to_docs = '/content/sample_data/data'
-  save_folder = '/content/sample_data/data/faiss_index'
-  Processing  = DocProcessing(path_to_docs ,save_folder=save_folder)
+
+  parser = argparse.ArgumentParser(description="Process documents and save vector store.")
+  parser.add_argument('--path_to_docs', type=str, default='/content/sample_data/data',  help="Path to your folder containing .md files.")
+  parser.add_argument('--save_folder', type=str, default='/content/sample_data/data/faiss_index', help="Path to save the vecor store.")
+  args = parser.parse_args()
+
+  path_to_docs = args.path_to_docs
+  save_folder = args.save_folder
+  Processing  = DocProcessing(path_to_docs, save_folder)
   texts_chunks = Processing.load_and_split_folder()
   Processing.save_vectorstore(texts_chunks)
 
